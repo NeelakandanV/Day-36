@@ -1,0 +1,189 @@
+Exercise -1
+
+1. SELECT Title FROM movies;
+2. SELECT Director FROM movies;
+3. SELECT Title,Director FROM movies;
+4. SELECT Title,Year FROM movies;
+5. SELECT * FROM movies;
+******************************************
+
+
+Exercise -2
+
+1. SELECT * FROM movies WHERE id=6;
+2. SELECT * FROM movies WHERE year BETWEEN 2000 AND 2010;
+3. SELECT * FROM movies WHERE NOT year BETWEEN 2000 AND 2010;
+4. SELECT * FROM movies LIMIT 5;
+********************************************
+
+
+Exercise -3
+
+1. SELECT title FROM movies WHERE title LIKE "%Toy%";
+2. SELECT title FROM movies WHERE director='John Lasseter';
+3. SELECT title FROM movies WHERE NOT director='John Lasseter';
+4. SELECT title FROM movies WHERE title LIKE "WALL-_";
+***************************************************************
+
+
+Exercise -4
+
+1. SELECT director FROM movies GROUP BY director ORDER BY director ;
+2. SELECT * FROM movies ORDER By year DESC LIMIT 4;
+3. SELECT * FROM movies ORDER By title ASC LIMIT 5;
+4. SELECT * FROM movies ORDER By title ASC LIMIT 5 OFFSET 5;
+**************************************************************************
+
+
+Review -1
+
+1. SELECT * FROM north_american_cities WHERE Country LIKE "Canada";
+2. SELECT * FROM north_american_cities WHERE Country LIKE "United States" ORDER BY Latitude DESC;
+3. SELECT * FROM north_american_cities WHERE Longitude<'-87.629798' ORDER By Longitude ASC;
+4. SELECT * FROM north_american_cities WHERE Country='Mexico' ORDER BY Population DESC LIMIT 2;
+5. SELECT * FROM north_american_cities WHERE Country='United States' ORDER BY Population DESC LIMIT 2 OFFSET 2;
+****************************************************************************************************************
+
+
+Exercise -6
+
+1. SELECT movies.title,boxoffice.Domestic_sales,boxoffice.International_sales
+   FROM movies
+   INNER JOIN boxoffice
+   WHERE movies.id = Movie_id ;
+2. SELECT movies.title,boxoffice.Domestic_sales,boxoffice.International_sales
+   FROM movies
+   INNER JOIN boxoffice
+   WHERE movies.id = Movie_id and boxoffice.Domestic_sales<boxoffice.International_sales;
+3. SELECT Movies.Title,b.Rating FROM Movies
+   INNER JOIN boxoffice b
+   WHERE Movies.Id = b.Movie_id
+   ORDER BY b.rating DESC;
+**************************************************************************************************
+
+
+Exercise -7
+
+1. SELECT e.Building,COUNT(*) FROM employees e
+   INNER JOIN Buildings b
+   WHERE e.Building=b.Building_name
+   GROUP BY e.Building;
+2. SELECT * FROM Buildings;
+3. SELECT DISTINCT b.Building_name,e.Role 
+   FROM Buildings b
+   LEFT JOIN Employees e 
+   ON b.Building_name = e.Building;
+************************************************************************
+
+
+Exerxise -8
+
+1. SELECT e.Name,e.Role FROM employees e
+   WHERE e.Building IS NULL;
+2. SELECT b.Building_name FROM Buildings b
+   LEFT JOIN employees e
+   ON e.Building = b.Building_name
+   WHERE e.name IS NULL;
+*************************************************************************
+
+
+Exercise -9
+
+1. SELECT m.Title,(b.Domestic_sales+b.International_sales)/1000000 AS sales FROM movies m
+   INNER JOIN Boxoffice b
+   ON m.Id=b.Movie_id;
+2. SELECT m.Title,b.Rating*10 AS PercRating FROM movies m
+   INNER JOIN Boxoffice b
+   ON m.Id=b.Movie_id;
+3. SELECT Title,year FROM movies
+   WHERE year%2=0;
+***************************************************************************
+
+
+Exercise -10
+
+1. SELECT MAX(Years_employed) FROM employees;
+2. SELECT Role,AVG(Years_employed) FROM employees
+   GROUP BY Role;
+3. SELECT Building,SUM(Years_employed) FROM employees
+   GROUP BY Building;
+****************************************************************************
+
+
+Exercise -11
+
+1. SELECT COUNT(Role),Role FROM employees
+   WHERE Role='Artist'
+   GROUP BY Role;
+2. SELECT COUNT(Role),Role FROM employees
+   GROUP BY Role;
+3. SELECT SUM(Years_employed) FROM employees
+   WHERE Role='Engineer'
+   GROUP BY Role;
+*********************************************************************************
+
+
+Exercise -12
+
+1. SELECT Director,COUNT(Title) FROM movies
+   GROUP BY Director;
+2. SELECT m.Director,SUM(b.Domestic_sales+b.International_sales) as totalsales FROM movies m
+   INNER JOIN Boxoffice b
+   ON m.id=b.Movie_id
+   GROUP BY Director;
+***************************************************************************************
+
+
+Exercise -13
+
+1. INSERT INTO Movies(Title,Director) Values('Toy Story 4','Lee Unkrich');
+2. INSERT INTO Boxoffice(Movie_id,Rating,Domestic_sales,International_sales) 
+   Values(15,'8.7','340000000','270000000');
+******************************************************************************************
+
+
+Exerxise -14
+
+1. UPDATE Movies
+   SET Director = 'John Lasseter'
+   WHERE Id=2;
+2. UPDATE Movies
+   SET Year = 1999
+   WHERE Id=3;
+3. UPDATE Movies
+   SET Title = 'Toy Story 3', Director ='Lee Unkrich'
+   WHERE Id =11;
+********************************************************************************************
+
+
+Exercise -15
+
+1. DELETE FROM Movies
+   WHERE Year<2005;
+2. DELETE FROM Movies
+   WHERE Director='Andrew Stanton';
+************************************************************************************************
+
+
+Exercise -16
+
+1. CREATE TABLE Database(
+   Name TEXT,
+   Version Float,
+   Download_count INT);
+**************************************************************************************************
+
+Exercise -17
+
+1. ALTER TABLE Movies
+   ADD Aspect_ratio FLOAT;
+2. ALTER TABLE Movies
+   ADD Language TEXT DEFAULT English;
+****************************************************************************************************
+
+
+Exercise -18
+
+1. DROP TABLE Movies;
+2. DROP TABLE BoxOffice;
+*****************************************************************************************************
